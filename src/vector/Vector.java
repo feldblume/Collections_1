@@ -12,4 +12,5 @@ public interface Vector {
     void mult(double factor);
     boolean sum(Vector v);
     boolean equal(Vector v);
+    Vector clone() throws CloneNotSupportedException;
 }

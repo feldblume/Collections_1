@@ -1,7 +1,9 @@
 package vector.vectorContainer;
 
+import vector.ArrayVector;
 import vector.Vector;
 
+import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -40,19 +42,32 @@ public class VectorCollection<T extends Vector> implements Collection {
 
     @Override
     public Object[] toArray() {
-//        T[] result = new T[this.vectors.length]();
-//        for(int i = 0; i< vectors.length; i++) {
-//            Vector temp = new Vector();
-//            result[i] = vectors[i].cl   ????
-//        }
-        return vectors.clone(); //????
+        // DEEP COPY
+        Vector[] v2 = new Vector[vectors.length];
+        for(int i=0; i< this.size(); i++){
+            Vector v = vectors[i];
+            Vector nv = new ArrayVector(this.size()); // concrete instantiation
+            for(int j = 0; j < v.getSize(); j++){
+                nv.setElement(j,v.getElement(j));
+            }
+            v2[i] = nv;
+        }
+        return v2;
     }
 
     @Override
-    public T[] toArray(Object[] a) {
-        a = this.vectors.clone();
-        return (T[])a; //????
+    public T[] toArray(Object[] a) {  // и пусть мир отъе... падаждьот!
+        if(a.length < vectors.length) {
+            a = (T[])Array.newInstance(a.getClass().getComponentType(),vectors.length);
+        }
+        System.arraycopy(this.toArray(),0,a,0,vectors.length);
+        if(a.length >= vectors.length) {
+            a[vectors.length] = null;
+        }
+        return (T[])a;
     }
+
+
 
     @Override
     public boolean add(Object o) {
@@ -91,8 +106,8 @@ public class VectorCollection<T extends Vector> implements Collection {
 
     @Override
     public boolean containsAll(Collection c) {
-        for(T element : c){
-            if(!this.contains(element) {
+        for(Object element : c){
+            if(!this.contains(element)) {
                 return false;
             }
         }
@@ -122,6 +137,7 @@ public class VectorCollection<T extends Vector> implements Collection {
                 this.remove(vectors[i]); // may contain error, or may not
             }
         }
+        return true;
     }
 
     @Override

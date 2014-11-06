@@ -10,6 +10,7 @@ import java.util.Iterator;
 public class LinkedListVector implements Vector, Cloneable, Iterable<VectorElement>, Serializable {
     VectorElement head;
     int size;
+
     public LinkedListVector() {
         head = new VectorElement(0);
         head.setPrevious(head);
@@ -31,10 +32,17 @@ public class LinkedListVector implements Vector, Cloneable, Iterable<VectorEleme
         public boolean hasNext() {
             return current.getNext() != head;
         }
+
+        @Override
+        public void remove() {
+            //isn't supposed to work))
+        }
+
         @Override
         public VectorElement next() {
             current = current.getNext();
             return current;
+
         }
     }
 
