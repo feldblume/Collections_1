@@ -44,19 +44,19 @@ public class VectorCollection<T extends Vector> implements Collection {
     public Object[] toArray() {
         // DEEP COPY
         Vector[] v2 = new Vector[vectors.length];
-        for(int i=0; i< this.size(); i++){
-            Vector v = vectors[i];
-            Vector nv = new ArrayVector(this.size()); // concrete instantiation
-            for(int j = 0; j < v.getSize(); j++){
-                nv.setElement(j,v.getElement(j));
+        try {
+            for(int i=0; i< this.size(); i++) {
+                v2[i] = vectors[i].clone();
             }
-            v2[i] = nv;
+        } catch (CloneNotSupportedException e) {
+            System.out.println("Cannot clone vector!");
         }
         return v2;
     }
 
     @Override
     public T[] toArray(Object[] a) {  // и пусть мир отъе... падаждьот!
+        //deep copy
         if(a.length < vectors.length) {
             a = (T[])Array.newInstance(a.getClass().getComponentType(),vectors.length);
         }
