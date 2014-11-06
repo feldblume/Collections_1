@@ -65,7 +65,6 @@ public class LinkedListVector implements Vector, Cloneable, Iterable<VectorEleme
 
     }
 
-
     @Override
     public String toString() {
         StringBuffer s = new StringBuffer();
@@ -93,7 +92,6 @@ public class LinkedListVector implements Vector, Cloneable, Iterable<VectorEleme
         }
         return null;
     }
-
 
     public boolean removeElement(int ind) {
         try {
