@@ -42,29 +42,23 @@ public class VectorCollection<T extends Vector> implements Collection {
 
     @Override
     public Object[] toArray() {
-        // DEEP COPY
-        Vector[] v2 = new Vector[vectors.length];
-        try {
-            for(int i=0; i< this.size(); i++) {
-                v2[i] = vectors[i].clone();
-            }
-        } catch (CloneNotSupportedException e) {
-            System.out.println("Cannot clone vector!");
-        }
-        return v2;
+        // SHALLOW COPY
+        return vectors;
     }
 
     @Override
     public T[] toArray(Object[] a) {  // и пусть мир отъе... падаждьот!
         //deep copy
-        if(a.length < vectors.length) {
+        if(a.length <= vectors.length) {
             a = (T[])Array.newInstance(a.getClass().getComponentType(),vectors.length);
         }
         System.arraycopy(this.toArray(),0,a,0,vectors.length);
-        if(a.length >= vectors.length) {
+        if(a.length > vectors.length) {
             a[vectors.length] = null;
         }
         return (T[])a;
+
+
     }
 
 
