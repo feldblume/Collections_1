@@ -4,6 +4,7 @@ import vector.ArrayVector;
 import vector.Vector;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -43,7 +44,7 @@ public class VectorCollection<T extends Vector> implements Collection {
     @Override
     public Object[] toArray() {
         // SHALLOW COPY
-        return vectors;
+        return Arrays.copyOf(vectors, vectors.length);
     }
 
     @Override
@@ -87,10 +88,7 @@ public class VectorCollection<T extends Vector> implements Collection {
         Vector[] result = new Vector[vectors.length-1];
         int current = 0;
         for(int i = 0; i<vectors.length; i++){
-            if(index == i) {
-                // skip
-            }
-            else {
+            if(index != i) {
                 result[current++] = vectors[i];
             }
         }
