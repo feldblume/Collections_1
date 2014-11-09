@@ -13,7 +13,7 @@ import java.util.List;
  * Created by nataliya on 03.11.14.
  */
 public class VectorCollection<T extends Vector> implements Collection {
-    private T[] vectors;
+    protected T[] vectors;
     @Override
     public int size() {
         return vectors.length;
