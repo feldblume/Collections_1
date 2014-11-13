@@ -22,9 +22,11 @@ public class Main {
 
         vm.put("one", llv);
         vm.put("two", llv2);
-//        vm.put("three", llv);
-//        vm.put("four", llv);
-//        vm.put("five", llv);
+        vm.put("three", llv);
+        vm.put("four", llv);
+        vm.put("five", llv);
+        Vector v = vm.get("one");
+        System.out.println(v);
 
         System.out.println(vm);
     }
