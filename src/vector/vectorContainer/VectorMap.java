@@ -123,6 +123,15 @@ public class VectorMap<K extends String ,V extends Vector> implements Map<K,V> {
     public Set<Entry<K, V>> entrySet() {
         return entries;
     }
+
+    @Override
+    public String toString() {
+        String result = "VectorMap: \n";
+        for(Map.Entry<K,V> entry : entries) {
+            result += "\t" + entry.toString() + "\n";
+        }
+        return result;
+    }
 }
 
 class CustomEntry<K, V> implements Map.Entry<K, V> {
@@ -149,5 +158,9 @@ class CustomEntry<K, V> implements Map.Entry<K, V> {
         V old = this.value;
         this.value = value;
         return old;
+    }
+    @Override
+    public String toString() {
+        return "Key:" + this.getKey() + " -> Value:" + this.getValue();
     }
 }
