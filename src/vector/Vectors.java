@@ -7,18 +7,18 @@ import java.io.*;
  */
 public class Vectors {
 
-    static VectorFactory vf = new ArrayVectorFactory();
+    static VectorFactory vectorFactory = new ArrayVectorFactory();
 
-    public void setVectorFactory(VectorFactory vf) {
-        this.vf = vf;
+    public static void setVectorFactory(VectorFactory vf) {
+        vectorFactory = vf;
     }
 
     public static Vector createInstance(int size) {
-        return vf.createVector(size);
+        return vectorFactory.createVector(size);
     }
 
     public static Vector createInstance() {
-        return vf.createVector();
+        return vectorFactory.createVector();
     }
 
 
