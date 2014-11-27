@@ -7,6 +7,21 @@ import java.io.*;
  */
 public class Vectors {
 
+    static VectorFactory vf = new ArrayVectorFactory();
+
+    public void setVectorFactory(VectorFactory vf) {
+        this.vf = vf;
+    }
+
+    public static Vector createInstance(int size) {
+        return vf.createVector(size);
+    }
+
+    public static Vector createInstance() {
+        return vf.createVector();
+    }
+
+
     public static Vector sortV(Vector initial) {
 
         for (int i = 0; i < initial.getSize() - 1; i++) {
@@ -40,7 +55,7 @@ public class Vectors {
                 + dIn.available());
         int size = dIn.readInt();
 
-        Vector v = new ArrayVector(size);
+        Vector v = createInstance(size);
 
         for (int i = 0; i < size && dIn.available() != 0; i++) {
             v.setElement(i, dIn.readDouble());
@@ -70,7 +85,7 @@ public class Vectors {
         int size = (int) st.nval;
         //System.out.println("\nTokens output: " + size + "\n");
 
-        Vector v = new ArrayVector(size);
+        Vector v = createInstance(size);
         for (int i = 0; i < size && st.nextToken() != StreamTokenizer.TT_EOF; i++) {
             v.setElement(i, st.nval);
         }
