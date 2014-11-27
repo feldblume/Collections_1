@@ -16,5 +16,19 @@ public class Main2 {
         Vectors.setVectorFactory(new LinkedListVectorFactory());
         v = Vectors.createInstance();
         System.out.println(v.getClass());
+
+        // Adapter
+        java.util.Vector v2 = new java.util.Vector();
+        v2.add(new Double(3));
+        v2.add(new Double(4));
+        System.out.println(v2);
+        Vector adaptedVector = Vectors.getAdaptedJVector(v2);
+        System.out.println(adaptedVector);
+        for(int i = 0; i<adaptedVector.getSize(); i++) {
+            System.out.print(adaptedVector.getElement(i) + ", ");
+        }
+        System.out.println();
+        adaptedVector.setElement(0,8);
+        System.out.println(v2);
     }
 }

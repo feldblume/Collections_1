@@ -1,12 +1,14 @@
 package vector;
 
 import java.io.*;
+import java.util.Collection;
 
 /**
  * Created by nataliya on 04.10.14.
  */
 public class Vectors {
 
+    // Factory stuff
     static VectorFactory vectorFactory = new ArrayVectorFactory();
 
     public static void setVectorFactory(VectorFactory vf) {
@@ -21,6 +23,15 @@ public class Vectors {
         return vectorFactory.createVector();
     }
 
+    // Adapter
+    public static Vector getAdaptedJVector(java.util.Vector jVector) {
+        return new JVectorAdapter(jVector);
+    }
+
+    // Proxy
+    public static Vector getProtectedVector(Vector vector) {
+        return new ProtectedVector(vector);
+    }
 
     public static Vector sortV(Vector initial) {
 
