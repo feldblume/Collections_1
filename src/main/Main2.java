@@ -1,6 +1,7 @@
 package main;
 
 import vector.LinkedListVectorFactory;
+import vector.SynchronizedVector;
 import vector.Vector;
 import vector.Vectors;
 
@@ -30,5 +31,9 @@ public class Main2 {
         System.out.println();
         adaptedVector.setElement(0,8);
         System.out.println(v2);
+
+        // Synchronized
+        SynchronizedVector sv = new SynchronizedVector(adaptedVector);
+        System.out.println(sv.getSize());
     }
 }

@@ -33,6 +33,11 @@ public class Vectors {
         return new ProtectedVector(vector);
     }
 
+    // Synchronized
+    Vector synchronizedVector(Vector vector) {
+        return new SynchronizedVector(vector);
+    }
+
     public static Vector sortV(Vector initial) {
 
         for (int i = 0; i < initial.getSize() - 1; i++) {
